@@ -1,21 +1,38 @@
-import * as React from 'react';
-import {useState, useEffect} from 'react'; // Added useEffect
+import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { getAuth, onAuthStateChanged } from 'firebase/auth'; // Correct import
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import LoginScreen from './screens/LoginScreen'; 
-import HomeScreen from './screens/HomeScreen'; 
+import HomeScreen, { Scheduler } from './screens/HomeScreen'; 
 import WelcomeScreen from './screens/WelcomeScreen';
 import ProfileScreen from './screens/ProfileScreen'; 
-import {useNavigation} from '@react-navigation/native';
+import SettingScreen from './screens/SettingScreen'; // Correct import
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+const screenOptions = {
+  tabBarShowLabel:false,
+  headerShown:false,
+  tabBarStyle:{
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    left: 0,
+    elevation: 0,
+    height: 60,
+    background: "#fff"
+  }
+}
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn]= useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -28,38 +45,49 @@ function App() {
   };
 
   // Initialize Firebase
-  let app;
   if (firebase.apps.length === 0) {
-    app = firebase.initializeApp(firebaseConfig);
-  } else {
-    app = firebase.app();
+    firebase.initializeApp(firebaseConfig);
   }
 
-  firebase.auth().onAuthStateChanged((user)=>{
-    if(user !=null){
-      setIsLoggedIn(true)
-    }
-    else{
-      setIsLoggedIn(false)
-    }
-  });
-  
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      setIsLoggedIn(!!user);
+    });
+    return unsubscribe;
+  }, []);
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
         {isLoggedIn ? (
-         <>
-         <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
-         <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }} />
-       </>
+          <>
+            <Stack.Screen name="Main" component={MainTabScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }} />
+          </>
         ) : (
           <>
-            <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{headerShown: false}} />
-            <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown: false}} />
+            <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
           </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
+  );
+}
+
+function MainTabScreen() {
+  return (
+    <Tab.Navigator screenOptions={screenOptions}>
+      <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarIcon: ({focused}) => (
+        <AntDesign name="home" size={24} color="black" />
+      ) }} />
+      <Tab.Screen name="TimeTable" component={Scheduler} options={{ tabBarIcon: ({focused}) => (
+        <MaterialCommunityIcons name="timetable" size={24} color="black" />
+      ) }} />
+      <Tab.Screen name="Settings" component={SettingScreen} options={{ tabBarIcon: ({focused}) => (
+        <Ionicons name="settings-outline" size={24} color="black" />
+      ) }} />
+    </Tab.Navigator>
   );
 }
 

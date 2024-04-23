@@ -1,18 +1,26 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faUser } from '@fortawesome/free-regular-svg-icons'; // Import the user icon
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import SettingScreen from './SettingScreen';
+import Scheduler from './Scheduler';
+import Prices from './Prices';
+import Porfolio from './Porfolio'
+
+export{
+  SettingScreen,
+  Scheduler,
+  Prices,
+  Porfolio
+}
+
 
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.profileButton}
-        onPress={() => navigation.navigate('ProfileScreen')}
-      >
-        <FontAwesomeIcon icon={faUser} style={styles.profileButtonIcon} />{/* Use FontAwesomeIcon here */}
+      <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('ProfileScreen')}>
+        <Image source={require('../assets/images/profile.jpeg')} style={{ width: 40, height: 40, borderRadius: 25 }} />
       </TouchableOpacity>
       <View style={styles.content}>
         <Text>HomeScreen</Text>
@@ -34,12 +42,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 30,
     right: 20,
-    
-    borderRadius: 100, // Make it circular
-    padding: 10,
-  },
-  profileButtonIcon: {
-    color: '#007AFF', // Adjust color as needed
-    fontSize: 20,
+    width: 50, // Set width and height to the desired size of the button
+    height: 50,
+    borderRadius: 25, // Make it circular
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black', // Set background color to ensure the button is visible
   },
 });
