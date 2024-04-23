@@ -9,6 +9,7 @@ import 'firebase/compat/auth';
 import LoginScreen from './screens/LoginScreen'; 
 import HomeScreen from './screens/HomeScreen'; 
 import WelcomeScreen from './screens/WelcomeScreen';
+import ProfileScreen from './screens/ProfileScreen'; 
 import {useNavigation} from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
@@ -47,7 +48,10 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {isLoggedIn ? (
-          <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown: false}} />
+         <>
+         <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
+         <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }} />
+       </>
         ) : (
           <>
             <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{headerShown: false}} />
