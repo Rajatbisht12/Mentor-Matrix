@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-elements';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faUser } from '@fortawesome/free-regular-svg-icons'; // Import the user icon
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 
@@ -11,11 +12,10 @@ export default function HomeScreen({ navigation }) {
         style={styles.profileButton}
         onPress={() => navigation.navigate('ProfileScreen')}
       >
-        <Text style={styles.profileButtonText}>Profile</Text>
+        <FontAwesomeIcon icon={faUser} style={styles.profileButtonIcon} />{/* Use FontAwesomeIcon here */}
       </TouchableOpacity>
       <View style={styles.content}>
         <Text>HomeScreen</Text>
-        <Button title='Log Out' onPress={() => firebase.auth().signOut()} />
       </View>
     </View>
   );
@@ -34,13 +34,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 30,
     right: 20,
-    backgroundColor: 'blue', // Change color as needed
-    borderRadius: 80, // Make it circular
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    
+    borderRadius: 100, // Make it circular
+    padding: 10,
   },
-  profileButtonText: {
+  profileButtonIcon: {
     color: '#007AFF', // Adjust color as needed
-    fontSize: 16,
+    fontSize: 20,
   },
 });

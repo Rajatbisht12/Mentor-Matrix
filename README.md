@@ -18,3 +18,11 @@
 ## 📝 Notes
 
 - [`react-native-reanimated` docs](https://docs.swmansion.com/react-native-reanimated/)
+
+
+ {isLoggedIn ? (
+         <>
+         <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
+         <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }} />
+       </>
+        ) : (
