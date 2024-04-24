@@ -5,48 +5,62 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import SettingScreen from './SettingScreen';
 import Scheduler from './Scheduler';
-import Prices from './Prices';
-import Porfolio from './Porfolio'
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView } from 'react-native';
 
-export{
+export {
   SettingScreen,
-  Scheduler,
-  Prices,
-  Porfolio
+  Scheduler
 }
-
 
 export default function HomeScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('ProfileScreen')}>
-        <Image source={require('../assets/images/profile.jpeg')} style={{ width: 40, height: 40, borderRadius: 25 }} />
-      </TouchableOpacity>
-      <View style={styles.content}>
-        <Text>HomeScreen</Text>
-      </View>
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('ProfileScreen')}>
+          <Image source={require('../assets/images/profile.jpeg')} style={{ width: 40, height: 40, borderRadius: 25 }} />
+        </TouchableOpacity>
+        <View style={styles.overlayContainer}>
+          <View style={{ paddingHorizontal: 16 }}>
+            <Text style={styles.greetingText}>Hello,</Text>
+            <Text style={styles.nameText}>        Amar Jindal</Text>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  content: {
-    alignItems: 'center',
-  },
   profileButton: {
     position: 'absolute',
-    top: 30,
+    top: 25,
     right: 20,
-    width: 50, // Set width and height to the desired size of the button
-    height: 50,
-    borderRadius: 25, // Make it circular
+    width: 45,
+    height: 45,
+    borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black', // Set background color to ensure the button is visible
+    backgroundColor: '#0B646B',
+    zIndex: 1, // Ensure the TouchableOpacity is above other views
+  },
+  overlayContainer: {
+    flex: 1,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    paddingTop: 20, // Adjust as needed
+    paddingLeft: 20, // Adjust as needed
+    zIndex: 0, // Set a lower zIndex for the overlayContainer to ensure it's below the TouchableOpacity
+  },
+  greetingText: {
+    fontSize: 30,
+    color: '#0B646B',
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  nameText: {
+    fontSize: 26,
+    color: '#527283',
+    fontWeight: 'bold',
   },
 });
