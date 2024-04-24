@@ -22,7 +22,29 @@ export default function ProfileScreen() {
           <Icon name="arrow-left" size={20} color="white" />
         </TouchableOpacity>
       </View>
-      
+      <View style={{ flex: 1, alignItems: "center" }}>
+        <Image
+          source={require('../assets/images/profile.jpeg')}
+          resizeMode="contain"
+          style={{
+            height: 155,
+            width: 155,
+            borderRadius: 999,
+            borderColor: "black",
+            borderWidth: 2,
+            marginTop: -90,
+          }}
+        />
+         <Text style={{marginVertical: 8,}}> Amar Jindal</Text>
+        </View>
+
+
+
+
+
+
+
+
       <View style={styles.container}>
         <Text>Profile Screen</Text>
         <Button title='Log Out' onPress={() => firebase.auth().signOut()} />
