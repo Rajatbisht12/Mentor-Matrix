@@ -83,18 +83,12 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
   },
-  buttonText:{
-    color: '#fff',
-    
-    fontWeight:'bold'
 
-  },
-
-  uploadButton:{
+   uploadButton:{
     borderRadius: 5,
     width: 150,
     heigth:50,
-    backgroundColor:'blue',
+    backgroundColor:'red',
     alignContent:'center',
     justifyContent:'center',
     marginTop:20,
