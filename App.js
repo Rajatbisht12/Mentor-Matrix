@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import 'firebase/compat/storage';
 import LoginScreen from './screens/LoginScreen'; 
 import HomeScreen, { Scheduler } from './screens/HomeScreen'; 
 import WelcomeScreen from './screens/WelcomeScreen';
@@ -14,6 +15,7 @@ import SettingScreen from './screens/SettingScreen'; // Correct import
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -37,11 +39,12 @@ function App() {
   // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyCwu3H0Xsktux9AQuhrwpx-2u5dZiwA-8k",
-  authDomain: "mentor-matrix-4204b.firebaseapp.com",
-  projectId: "mentor-matrix-4204b",
-  storageBucket: "mentor-matrix-4204b.appspot.com",
-  messagingSenderId: "1072171754165",
-  appId: "1:1072171754165:web:20071f758a1064031294fc"
+    authDomain: "mentor-matrix-4204b.firebaseapp.com",
+    databaseURL: "https://mentor-matrix-4204b-default-rtdb.firebaseio.com",
+    projectId: "mentor-matrix-4204b",
+    storageBucket: "mentor-matrix-4204b.appspot.com",
+    messagingSenderId: "1072171754165",
+    appId: "1:1072171754165:web:20071f758a1064031294fc"
   };
 
   // Initialize Firebase
@@ -68,6 +71,7 @@ function App() {
           <>
             <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{ headerShown: false }} />
             <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Scheduler" component={Scheduler} options={{ headerShown: true }} />
           </>
         )}
       </Stack.Navigator>
