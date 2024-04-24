@@ -66,6 +66,7 @@ function App() {
           <>
             <Stack.Screen name="Main" component={MainTabScreen} options={{ headerShown: false }} />
             <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Scheduler" component={Scheduler} options={{ headerShown: false }} />
           </>
         ) : (
           <>
