@@ -15,6 +15,7 @@ import SettingScreen from './screens/SettingScreen'; // Correct import
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet } from 'react-native-web';
 
 
 const Tab = createBottomTabNavigator();
