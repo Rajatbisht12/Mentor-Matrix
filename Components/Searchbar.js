@@ -18,31 +18,34 @@ export default function Searchbar() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginTop: -250, // Adjust as needed for vertical positioning
     justifyContent: 'center',
+    position: 'absolute', // Add position absolute
+    top: -200, // Adjust top position as needed
+    left: 0, // Ensure the search bar is centered horizontally
+    right: 0,
   },
   inputContainer: {
     backgroundColor: '#FFF',
     flex: 1,
-    height: 40, // Reduced input height
-    borderTopLeftRadius: 20, // Reduced border radius
-    borderBottomLeftRadius: 20, // Reduced border radius
+    height: 40,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
     borderWidth: 1,
     borderColor: '#C0C0C0',
-    justifyContent: 'center', // Center input content vertically
+    justifyContent: 'center',
   },
   input: {
     flex: 1,
     marginLeft: 10,
-    fontSize: 16, // Reduced font size
+    fontSize: 16,
   },
   buttonContainer: {
-    height: 40, // Reduced button height
-    width: 40, // Reduced button width
+    height: 40,
+    width: 40,
     backgroundColor: '#FFF',
     borderWidth: 1,
-    borderTopRightRadius: 20, // Reduced border radius
-    borderBottomRightRadius: 20, // Reduced border radius
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
     borderColor: '#C0C0C0',
     alignItems: 'center',
     justifyContent: 'center',
