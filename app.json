@@ -3,6 +3,8 @@
     "name": "Mentor-Matrix",
     "slug": "Mentor-Matrix",
     "plugins": [
+      "@config-plugins/react-native-blob-util",
+      "@config-plugins/react-native-pdf",
       [
         "expo-image-picker",
         {
