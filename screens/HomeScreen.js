@@ -7,6 +7,7 @@ import SettingScreen from './SettingScreen';
 import Scheduler from './Scheduler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native';
+import SearchBar from '../Components/Searchbar';
 
 export {
   SettingScreen,
@@ -25,6 +26,9 @@ export default function HomeScreen({ navigation }) {
             <Text style={styles.greetingText}>Hello,</Text>
             <Text style={styles.nameText}>        Amar Jindal</Text>
           </View>
+        </View>
+        <View style={styles.BG}>
+          <SearchBar></SearchBar>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -50,7 +54,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingTop: 20, // Adjust as needed
     paddingLeft: 20, // Adjust as needed
-    zIndex: 0, // Set a lower zIndex for the overlayContainer to ensure it's below the TouchableOpacity
+    zIndex: 0,
+    backgroundColor:'#FFF' // Set a lower zIndex for the overlayContainer to ensure it's below the TouchableOpacity
   },
   greetingText: {
     fontSize: 30,
@@ -63,4 +68,8 @@ const styles = StyleSheet.create({
     color: '#527283',
     fontWeight: 'bold',
   },
+  BG:{
+    backgroundColor:'#FFF',
+    flex:1
+  }
 });
