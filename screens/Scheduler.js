@@ -4,6 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 export default function ImagePickerExample() {
   const [image, setImage] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -20,6 +21,7 @@ export default function ImagePickerExample() {
       setImage(result.assets[0].uri);
     }
   };
+
 
   return (
     <View style={styles.container}>
